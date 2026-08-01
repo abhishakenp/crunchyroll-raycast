@@ -1,10 +1,24 @@
-import { Detail, ActionPanel, Action, Icon, showToast, Toast } from "@raycast/api";
+import {
+  Detail,
+  ActionPanel,
+  Action,
+  Icon,
+  showToast,
+  Toast,
+} from "@raycast/api";
 import { useState, useEffect } from "react";
-import { isWebAppInstalled, createWebApp, isAutoPiPInstalled, openCrunchyroll } from "./webapp";
+import {
+  isWebAppInstalled,
+  createWebApp,
+  isAutoPiPInstalled,
+  openCrunchyroll,
+} from "./webapp";
 
 export default function SetupCommand() {
   const [webAppInstalled, setWebAppInstalled] = useState<boolean | null>(null);
-  const [autoPiPInstalled, setAutoPiPInstalled] = useState<boolean | null>(null);
+  const [autoPiPInstalled, setAutoPiPInstalled] = useState<boolean | null>(
+    null,
+  );
 
   useEffect(() => {
     async function check() {

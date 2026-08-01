@@ -26,12 +26,18 @@ function HistoryCommand() {
   const errorMessage = error instanceof Error ? error.message : null;
 
   return (
-    <List isLoading={showLoading || showRefetching} searchBarPlaceholder="Filter anime...">
+    <List
+      isLoading={showLoading || showRefetching}
+      searchBarPlaceholder="Filter anime..."
+    >
       {errorMessage && !results.length ? (
         <List.EmptyView
           title="Error"
           description={errorMessage}
-          icon={{ source: Icon.ExclamationMark, tintColor: { light: "red", dark: "red" } }}
+          icon={{
+            source: Icon.ExclamationMark,
+            tintColor: { light: "red", dark: "red" },
+          }}
         />
       ) : (
         results.map((anime) => (
@@ -43,7 +49,11 @@ function HistoryCommand() {
               anime.isPremium ? { text: "Premium", icon: Icon.Crown } : {},
               anime.episodes ? { text: `${anime.episodes} eps` } : {},
             ].filter((a) => Object.keys(a).length > 0)}
-            icon={anime.image ? { source: anime.image, mask: Image.Mask.RoundedRectangle } : Icon.Video}
+            icon={
+              anime.image
+                ? { source: anime.image, mask: Image.Mask.RoundedRectangle }
+                : Icon.Video
+            }
             actions={
               <ActionPanel>
                 <Action

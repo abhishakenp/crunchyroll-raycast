@@ -40,7 +40,10 @@ export const historyKey = ["crunchyroll", "history"];
 export const trendingKey = ["crunchyroll", "trending"];
 
 // Cache to LocalStorage for instant load on next launch
-async function cacheToStorage(key: string, items: AnimeSeries[]): Promise<void> {
+async function cacheToStorage(
+  key: string,
+  items: AnimeSeries[],
+): Promise<void> {
   try {
     await LocalStorage.setItem(key, JSON.stringify(items));
     await LocalStorage.setItem(`${key}-time`, Date.now().toString());
@@ -60,9 +63,12 @@ async function loadFromStorage(key: string): Promise<AnimeSeries[] | null> {
 }
 
 // Fetcher: search multiple queries in parallel, dedupe, cache to LocalStorage
-async function fetchAnimeList(queries: string[], storageKey: string): Promise<AnimeSeries[]> {
+async function fetchAnimeList(
+  queries: string[],
+  storageKey: string,
+): Promise<AnimeSeries[]> {
   const allResults = await Promise.all(
-    queries.map((q) => searchAnime(q).catch(() => [] as AnimeSeries[]))
+    queries.map((q) => searchAnime(q).catch(() => [] as AnimeSeries[])),
   );
 
   const allAnime: AnimeSeries[] = [];

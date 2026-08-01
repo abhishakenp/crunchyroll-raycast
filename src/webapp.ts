@@ -4,7 +4,8 @@ import { runAppleScript } from "@raycast/utils";
 import { homedir } from "os";
 
 const WEB_APP_PATH = `${homedir()}/Applications/Crunchyroll Web.app`;
-const WEB_APP_BUNDLE_ID = "com.apple.Safari.WebApp.ACE072C2-02DF-4B26-AFE4-A51ABE7DF472";
+const WEB_APP_BUNDLE_ID =
+  "com.apple.Safari.WebApp.ACE072C2-02DF-4B26-AFE4-A51ABE7DF472";
 
 /**
  * Check if the Crunchyroll Safari web app exists

@@ -8,7 +8,8 @@ import { join } from "path";
 import { tmpdir } from "os";
 
 const CRUNCHYROLL_API = "https://beta-api.crunchyroll.com";
-const BASIC_AUTH = "Basic dC1rZGdwMmg4YzNqdWI4Zm4wZnE6eWZMRGZNZnJZdktYaDRKWFMxTEVJMmNDcXUxdjVXYW4=";
+const BASIC_AUTH =
+  "Basic dC1rZGdwMmg4YzNqdWI4Zm4wZnE6eWZMRGZNZnJZdktYaDRKWFMxTEVJMmNDcXUxdjVXYW4=";
 
 export interface AnimeSeries {
   id: string;
@@ -30,7 +31,12 @@ interface CacheEntry {
 
 let tokenCache: CacheEntry | null = null;
 
-async function curlJSON(url: string, headers: Record<string, string>, method: string = "GET", body?: string): Promise<string> {
+async function curlJSON(
+  url: string,
+  headers: Record<string, string>,
+  method: string = "GET",
+  body?: string,
+): Promise<string> {
   // Write a shell script to a temp file to avoid all escaping issues
   const tmpDir = mkdtempSync(join(tmpdir(), "cr-"));
   const scriptPath = join(tmpDir, "fetch.sh");
@@ -48,11 +54,21 @@ curl -s --max-time 15 -X ${method} ${headerArgs} ${bodyArg} '${url.replace(/'/g,
   writeFileSync(scriptPath, script, { mode: 0o755 });
 
   try {
-    const result = await runAppleScript(`do shell script "/bin/bash ${scriptPath}"`);
+    const result = await runAppleScript(
+      `do shell script "/bin/bash ${scriptPath}"`,
+    );
     return result;
   } finally {
-    try { unlinkSync(scriptPath); } catch {}
-    try { rmdirSync(tmpDir); } catch {}
+    try {
+      unlinkSync(scriptPath);
+    } catch {
+      // ignore
+    }
+    try {
+      rmdirSync(tmpDir);
+    } catch {
+      // ignore
+    }
   }
 }
 
@@ -71,7 +87,7 @@ export async function getAnonymousToken(): Promise<string> {
       "ETP-Anonymous-ID": uuid,
     },
     "POST",
-    "grant_type=client_id"
+    "grant_type=client_id",
   );
 
   let data: { access_token: string; expires_in: number };
