@@ -170,7 +170,8 @@ export async function fetchLastEpisodeUrl(): Promise<string | null> {
       delay 5
       set jsResult to do JavaScript "
         (function(){
-          var links = document.querySelectorAll('a[href*=\"/watch/\"]');
+          var q = 'a[href*=' + String.fromCharCode(34) + '/watch/' + String.fromCharCode(34) + ']';
+          var links = document.querySelectorAll(q);
           var seen = {};
           for (var i = 0; i < links.length; i++) {
             var href = links[i].href;
@@ -179,7 +180,6 @@ export async function fetchLastEpisodeUrl(): Promise<string | null> {
             var text = links[i].textContent.trim();
             if (text.length > 2) return href;
           }
-          // Fallback: any watch link (even thumbnail-only)
           for (var j = 0; j < links.length; j++) {
             if (links[j].href) return links[j].href;
           }
