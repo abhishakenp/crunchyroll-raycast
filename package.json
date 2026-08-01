@@ -1,0 +1,87 @@
+{
+  "name": "crunchyroll",
+  "title": "Crunchyroll",
+  "description": "Search anime, browse trending and history, and open Crunchyroll in a Safari web app with auto Picture-in-Picture",
+  "icon": "assets/icon.png",
+  "author": "abhi",
+  "license": "MIT",
+  "platforms": [
+    "macOS"
+  ],
+  "categories": [
+    "Fun",
+    "Media"
+  ],
+  "version": "1.0.0",
+  "commands": [
+    {
+      "name": "search",
+      "title": "Search Anime",
+      "description": "Search for anime on Crunchyroll",
+      "mode": "view",
+      "icon": "assets/icon.png",
+      "arguments": [
+        {
+          "name": "query",
+          "placeholder": "e.g. demon slayer",
+          "type": "text",
+          "required": false
+        }
+      ]
+    },
+    {
+      "name": "watching",
+      "title": "Continue Watching",
+      "description": "Open Crunchyroll in fullscreen (resumes last watched episode)",
+      "mode": "no-view",
+      "icon": "assets/icon.png"
+    },
+    {
+      "name": "trending",
+      "title": "Browse Trending",
+      "description": "Browse popular and trending anime on Crunchyroll",
+      "mode": "view",
+      "icon": "assets/icon.png"
+    },
+    {
+      "name": "history",
+      "title": "Browse History",
+      "description": "View your recently watched anime on Crunchyroll",
+      "mode": "view",
+      "icon": "assets/icon.png"
+    },
+    {
+      "name": "setup",
+      "title": "Setup Crunchyroll",
+      "description": "Install the Safari web app, AutoPiP extension, and configure fullscreen",
+      "mode": "view",
+      "icon": "assets/icon.png"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "autoFullscreen",
+      "type": "checkbox",
+      "title": "Auto Fullscreen",
+      "default": true,
+      "description": "Automatically enter fullscreen when opening Crunchyroll",
+      "required": false
+    }
+  ],
+  "dependencies": {
+    "@raycast/api": "^1.104.24",
+    "@raycast/utils": "^1.0.0",
+    "@tanstack/react-query": "^5.101.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^19.2.18",
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "dev": "ray develop",
+    "build": "ray build -e dist",
+    "lint": "ray lint"
+  },
+  "overrides": {}
+}
