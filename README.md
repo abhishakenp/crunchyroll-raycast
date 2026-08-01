@@ -12,30 +12,27 @@ Search anime, browse trending and history, and open Crunchyroll in a Safari web 
 
 ## Requirements
 
-- [Raycast](https://raycast.com) (Beta or stable)
+- [Raycast](https://raycast.com)
 - macOS 13+
 - Safari (for web app integration)
 
 ## Install
 
+### From the Raycast Store (recommended)
+
+Once published, search "Crunchyroll" in the Raycast Store and click Install.
+
 ### From Source
 
 ```bash
-git clone https://github.com/abhi/crunchyroll-raycast.git
+git clone https://github.com/abhishakenp/crunchyroll-raycast.git
 cd crunchyroll-raycast
 npm install
-npm run dev
-```
-
-This opens the extension in Raycast development mode. Search "Crunchyroll" in Raycast to use it.
-
-### Build for Production
-
-```bash
 npm run build
+ray publish
 ```
 
-Then import the built extension in Raycast: **Settings → Extensions → Import Extension**.
+The `ray publish` command will install the extension locally and submit it to the Raycast Store.
 
 ## First-Time Setup
 
